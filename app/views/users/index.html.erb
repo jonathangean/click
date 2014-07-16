@@ -1,0 +1,17 @@
+<head>
+
+</head>
+</br>
+</br>
+<% if current_user %>
+  <p>
+    <center><%= current_user.name %></center>
+  </p>
+</br>
+</br>
+  <center style="font-size: 96px;"><a href="/users/<%= current_user.id %>">Sites</a></center>
+  <center style="font-size: 96px;"><a href="/users/<%= current_user.id %>"><%= link_to "Log-Out", log_out_path, method: :delete %></center>
+<% else%>
+  <center><%= link_to "Log-In", log_in_path %></center>
+  <center><%= link_to "Sign-Up", new_user_path %></center>
+<% end %>

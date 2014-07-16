@@ -1,0 +1,298 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="jquery.js"></script>
+  <script>
+var context = new webkitAudioContext();
+
+var mod_types = ["sawtooth","sine","square"]
+function Modulator (type, freq, gain) {
+  this.modulator = context.createOscillator();
+  this.gain = context.createGainNode();
+  this.modulator.type = type;
+  this.modulator.frequency.value = freq;
+  this.gain.gain.value = gain;
+  this.modulator.connect(this.gain);
+  this.modulator.start(0);
+}
+
+// Make a stack of modulator
+var modulatorStackNode1 = [
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.1654*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 1.8456*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 7.7*Math.random(), 200*Math.random()),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 97*Math.random(), 200*Math.random()),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 200.8576*Math.random(), 200)
+
+].reduce(function (input, output) {
+ input.gain.connect(output.modulator.frequency);
+ return output;
+});
+var modulatorStackNode2 = [
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.1654*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 1.8456*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 7.7*Math.random(), 200*Math.random()),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 97*Math.random(), 200),
+].reduce(function (input, output) {
+ input.gain.connect(output.modulator.frequency);
+ return output;
+});
+var modulatorStackNode3 = [
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.1654*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.8456*Math.random(), 200),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 7.7*Math.random(), 200),
+].reduce(function (input, output) {
+ input.gain.connect(output.modulator.frequency);
+ return output;
+});
+var modulatorStackNode4 = [
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.823*Math.random(), 200*Math.random()),
+new Modulator(mod_types[Math.floor(Math.random()*3)], 1.8456*Math.random(), 200*Math.random()),
+].reduce(function (input, output) {
+ input.gain.connect(output.modulator.frequency);
+ return output;
+});
+var modulatorStackNode5 = [
+new Modulator(mod_types[Math.floor(Math.random()*3)], 0.01*Math.random(), 200*Math.random()),
+].reduce(function (input, output) {
+ input.gain.connect(output.modulator.frequency);
+ return output;
+});
+
+function shuffle(array) {
+  var i = array.length,
+  j = 0,
+  temp;
+
+  while (i--) {
+
+    j = Math.floor(Math.random() * (i+1));
+
+        // swap randomly chosen element with current element
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+      }
+
+      return array;
+    }
+
+    lotto_array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+
+    var osc = context.createOscillator();
+    osc.type = "sine";
+    osc.frequency.value = 100+200*Math.random();
+    modulatorStackNode1.gain.connect(osc.frequency);
+
+    var filter = context.createBiquadFilter();
+    filter.frequency.value = 2000;
+    filter.Q.value = 10;
+    osc.connect(filter);
+    filter.connect(context.destination);
+    osc.start();
+
+    var fragment = null;
+
+
+$( document ).ready(function(){
+
+  $("<div style='float: right'; id='number'></div>").appendTo('body');
+  $("#number").text("5");
+  $("<table id='lotto'></table>").appendTo('body');
+
+  $(window).click(function(){
+    $("#number").text("4");
+
+    modulatorStackNode1.gain.disconnect(osc.frequency);
+    Math.floor(Math.random()*41 + 1)
+    modulatorStackNode2.gain.connect(osc.frequency);
+    shuffle(lotto_array);
+
+    $("<tr id='lotto1'></tr>").appendTo('#lotto');
+    $("<td id='lottonumber1'>"+lotto_array[1]+"</td>").appendTo('#lotto1');
+    $("<td id='lottonumber2'>"+lotto_array[2]+"</td>").appendTo('#lotto1');
+    $("<td id='lottonumber3'>"+lotto_array[3]+"</td>").appendTo('#lotto1');
+    $("<td id='lottonumber4'>"+lotto_array[4]+"</td>").appendTo('#lotto1');
+    $("<td id='lottonumber5'>"+lotto_array[5]+"</td>").appendTo('#lotto1');
+    $("<td id='lottonumber6'>"+lotto_array[6]+"</td>").appendTo('#lotto1');
+
+    setTimeout(function(){$('#lottonumber1').html(" ")}, 3000);
+    setTimeout(function(){$('#lottonumber2').html(" ")}, 3000);
+    setTimeout(function(){$('#lottonumber3').html(" ")}, 3000);
+    setTimeout(function(){$('#lottonumber4').html(" ")}, 3000);
+    setTimeout(function(){$('#lottonumber5').html(" ")}, 3000);
+    setTimeout(function(){$('#lottonumber6').html(" ")}, 3000);
+
+
+    $(window).click(function(){
+      $("#number").text("3");
+
+      modulatorStackNode2.gain.disconnect(osc.frequency);
+      modulatorStackNode3.gain.connect(osc.frequency);
+      shuffle(lotto_array);
+      $('#lotto').empty();
+      $("<tr id='lotto1'></tr>").appendTo('#lotto');
+      $("<td id='lottonumber1'> </td>").appendTo('#lotto1');
+      $("<td id='lottonumber2'> </td>").appendTo('#lotto1');
+      $("<td id='lottonumber3'> </td>").appendTo('#lotto1');
+      $("<td id='lottonumber4'> </td>").appendTo('#lotto1');
+      $("<td id='lottonumber5'> </td>").appendTo('#lotto1');
+      $("<td id='lottonumber6'> </td>").appendTo('#lotto1');
+
+      $("<tr id='lotto2'></tr>").appendTo('#lotto');
+      $("<td id='lottonumber11'>"+lotto_array[1]+"</td>").appendTo('#lotto2');
+      $("<td id='lottonumber22'>"+lotto_array[2]+"</td>").appendTo('#lotto2');
+      $("<td id='lottonumber33'>"+lotto_array[3]+"</td>").appendTo('#lotto2');
+      $("<td id='lottonumber44'>"+lotto_array[4]+"</td>").appendTo('#lotto2');
+      $("<td id='lottonumber55'>"+lotto_array[5]+"</td>").appendTo('#lotto2');
+      $("<td id='lottonumber66'>"+lotto_array[6]+"</td>").appendTo('#lotto2');
+
+      setTimeout(function(){$('#lottonumber11').html(" ")}, 3000);
+      setTimeout(function(){$('#lottonumber22').html(" ")}, 3000);
+      setTimeout(function(){$('#lottonumber33').html(" ")}, 3000);
+      setTimeout(function(){$('#lottonumber44').html(" ")}, 3000);
+      setTimeout(function(){$('#lottonumber55').html(" ")}, 3000);
+      setTimeout(function(){$('#lottonumber66').html(" ")}, 3000);
+
+      $(window).click(function(){
+        $("#number").text("2");
+
+        modulatorStackNode3.gain.disconnect(osc.frequency);
+        modulatorStackNode4.gain.connect(osc.frequency);
+        shuffle(lotto_array);
+        $('#lotto').empty();
+        $("<tr id='lotto1'></tr>").appendTo('#lotto');
+        $("<td id='lottonumber1'> </td>").appendTo('#lotto1');
+        $("<td id='lottonumber2'> </td>").appendTo('#lotto1');
+        $("<td id='lottonumber3'> </td>").appendTo('#lotto1');
+        $("<td id='lottonumber4'> </td>").appendTo('#lotto1');
+        $("<td id='lottonumber5'> </td>").appendTo('#lotto1');
+        $("<td id='lottonumber6'> </td>").appendTo('#lotto1');
+
+        $("<tr id='lotto2'></tr>").appendTo('#lotto');
+        $("<td id='lottonumber11'> </td>").appendTo('#lotto2');
+        $("<td id='lottonumber22'> </td>").appendTo('#lotto2');
+        $("<td id='lottonumber33'> </td>").appendTo('#lotto2');
+        $("<td id='lottonumber44'> </td>").appendTo('#lotto2');
+        $("<td id='lottonumber55'> </td>").appendTo('#lotto2');
+        $("<td id='lottonumber66'> </td>").appendTo('#lotto2');
+
+        $("<tr id='lotto3'></tr>").appendTo('#lotto');
+        $("<td id='lottonumber111'>"+lotto_array[1]+"</td>").appendTo('#lotto3');
+        $("<td id='lottonumber222'>"+lotto_array[2]+"</td>").appendTo('#lotto3');
+        $("<td id='lottonumber333'>"+lotto_array[3]+"</td>").appendTo('#lotto3');
+        $("<td id='lottonumber444'>"+lotto_array[4]+"</td>").appendTo('#lotto3');
+        $("<td id='lottonumber555'>"+lotto_array[5]+"</td>").appendTo('#lotto3');
+        $("<td id='lottonumber666'>"+lotto_array[6]+"</td>").appendTo('#lotto3');
+
+        setTimeout(function(){$('#lottonumber111').html(" ")}, 3000);
+        setTimeout(function(){$('#lottonumber222').html(" ")}, 3000);
+        setTimeout(function(){$('#lottonumber333').html(" ")}, 3000);
+        setTimeout(function(){$('#lottonumber444').html(" ")}, 3000);
+        setTimeout(function(){$('#lottonumber555').html(" ")}, 3000);
+        setTimeout(function(){$('#lottonumber666').html(" ")}, 3000);
+        $(window).click(function(){
+          $("#number").text("1");
+
+          shuffle(lotto_array);
+          $('#lotto').empty();
+          $("<tr id='lotto1'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber1'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber2'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber3'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber4'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber5'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber6'> </td>").appendTo('#lotto1');
+
+          $("<tr id='lotto2'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber11'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber22'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber33'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber44'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber55'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber66'> </td>").appendTo('#lotto2');
+
+          $("<tr id='lotto3'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber111'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber222'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber333'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber444'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber555'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber666'> </td>").appendTo('#lotto3');
+
+          $("<tr id='lotto4'></tr>").appendTo('#lotto');
+
+          $("<td id='lottonumber1111'>"+lotto_array[1]+"</td>").appendTo('#lotto4');
+          $("<td id='lottonumber2222'>"+lotto_array[2]+"</td>").appendTo('#lotto4');
+          $("<td id='lottonumber3333'>"+lotto_array[3]+"</td>").appendTo('#lotto4');
+          $("<td id='lottonumber4444'>"+lotto_array[4]+"</td>").appendTo('#lotto4');
+          $("<td id='lottonumber5555'>"+lotto_array[5]+"</td>").appendTo('#lotto4');
+          $("<td id='lottonumber6666'>"+lotto_array[6]+"</td>").appendTo('#lotto4');
+
+          setTimeout(function(){$('#lottonumber1111').html(" ")}, 3000);
+          setTimeout(function(){$('#lottonumber2222').html(" ")}, 3000);
+          setTimeout(function(){$('#lottonumber3333').html(" ")}, 3000);
+          setTimeout(function(){$('#lottonumber4444').html(" ")}, 3000);
+          setTimeout(function(){$('#lottonumber5555').html(" ")}, 3000);
+          setTimeout(function(){$('#lottonumber6666').html(" ")}, 3000);
+
+          modulatorStackNode4.gain.disconnect(osc.frequency);
+          modulatorStackNode5.gain.connect(osc.frequency);
+         // loadFragment();
+          snd = new Audio('1405437364_5hU81tgRmVYEou8y035f.mp3');
+          snd.play();
+         $(window).click(function(){
+
+          $("#number").text(" ");
+
+          $('#lotto').empty();
+          $("<tr id='lotto1'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber1'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber2'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber3'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber4'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber5'> </td>").appendTo('#lotto1');
+          $("<td id='lottonumber6'> </td>").appendTo('#lotto1');
+
+          $("<tr id='lotto2'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber11'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber22'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber33'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber44'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber55'> </td>").appendTo('#lotto2');
+          $("<td id='lottonumber66'> </td>").appendTo('#lotto2');
+
+          $("<tr id='lotto3'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber111'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber222'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber333'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber444'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber555'> </td>").appendTo('#lotto3');
+          $("<td id='lottonumber666'> </td>").appendTo('#lotto3');
+
+          $("<tr id='lotto4'></tr>").appendTo('#lotto');
+          $("<td id='lottonumber1111'> </td>").appendTo('#lotto4');
+          $("<td id='lottonumber2222'> </td>").appendTo('#lotto4');
+          $("<td id='lottonumber3333'> </td>").appendTo('#lotto4');
+          $("<td id='lottonumber4444'> </td>").appendTo('#lotto4');
+          $("<td id='lottonumber5555'> </td>").appendTo('#lotto4');
+          $("<td id='lottonumber6666'> </td>").appendTo('#lotto4');
+          osc.stop();
+          snd.pause();
+          setTimeout(function(){location.reload()},10000);
+        });
+      });
+    });
+  });
+});
+});
+
+</script>
+
+</head>
+<body>
+</body>
+</html>

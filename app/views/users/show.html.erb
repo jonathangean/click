@@ -1,0 +1,26 @@
+<head>
+
+</head>
+<center><h1>Sites</h1>
+ <!--  <form action="/search" method='get'>
+  <input type="text" placeholder="Search for new article" name='search_term'>
+  <input type="submit">
+</form> -->
+</br>
+</br>
+<a style="font-size: 96px;" href="/users/<%= @user.id %>/sites/show">New</a>
+</br>
+<ul>
+  <% @user_sites.each do |article| %>
+    <li>
+      <a href="/users/<%= site.user_id %>/sites/<%= site.id %>"><%= site.id %></a>
+    </li>
+    <% end %>
+</ul>
+
+
+
+<p style="font-size: 96px;"><a href="/users">Home</a></p>
+
+
+</center>

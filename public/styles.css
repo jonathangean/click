@@ -1,0 +1,187 @@
+body {
+  height: 100%;
+  background-image: url(catch.gif), url(HoustonPicture.jpg);
+}
+#number {
+  float: right;
+  font-size: 130px;
+}
+#lottery1 {
+  height: 150px;
+  width: 100%;
+  border: 20px solid;
+}
+#lottonumber1 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber2 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber3 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber4 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber5 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber6 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+  background-color: rgba(255, 255, 0, 0.8)
+}
+#lottonumber11 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber22 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber33 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber44 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber55 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber66 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+  background-color: rgba(255, 255, 0, 0.8)
+}
+#lottonumber111 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber222 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber333 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber444 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber555 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber666 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+  background-color: rgba(255, 255, 0, 0.8)
+}
+#lottonumber1111 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber2222 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber3333 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber4444 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber5555 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+}
+#lottonumber6666 {
+  display: inline-block;
+  font-size: 140px;
+  border: 10px solid;
+  height: 150px;
+  width: 200px;
+  background-color: rgba(255, 255, 0, 0.8)
+}
+/*  background-image: url(oie_oie_overlay.gif);
+*/
