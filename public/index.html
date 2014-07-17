@@ -10,7 +10,7 @@ var context = new webkitAudioContext();
 var mod_types = ["sawtooth","sine","square"]
 function Modulator (type, freq, gain) {
   this.modulator = context.createOscillator();
-  this.gain = context.createGainNode();
+  this.gain = context.createGain();
   this.modulator.type = type;
   this.modulator.frequency.value = freq;
   this.gain.gain.value = gain;
